@@ -42,8 +42,49 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Give us the location of the user
+        let userLocation = locations.first
         
-        // Stop requesting the location after we get it once
-        locationManager.stopUpdatingLocation()
+        if userLocation != nil {
+            // We have a location
+            // Stop requesting the location after we get it once
+            locationManager.stopUpdatingLocation()
+            
+            // If we have the coordinates of the user, send into Yelp API
+            getBusinesses(category: "arts", location: userLocation!)
+        }
+    }
+    
+    // MARK: Yelp API method
+    func getBusinesses(category: String, location: CLLocation){
+        
+        // Create URL
+        var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "latitude", value: String(location.coordinate.latitude)),
+            URLQueryItem(name: "longitude", value: String(location.coordinate.longitude)),
+            URLQueryItem(name: "categories", value: category),
+            URLQueryItem(name: "limit", value: "6")
+        ]
+        let url =  urlComponents?.url
+        
+        if let url = url {
+            // Create URL Request
+            var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
+            
+            request.httpMethod = "GET"
+            request.addValue("Bearer CuaOaJz-nFd_5ygFJKLt0b92hFZ1unQ2fgf2pHfyqAQ2VJt9Ha_YjWUfUog84HNidgqVJv4QKwgXFMXpMAuCI38xQW6EL1smSknShUaGiLMFlnxe5oTsEHpFOy_1YHYx", forHTTPHeaderField: "Authorization")
+            // Get URL Session
+            let session = URLSession.shared
+            // Create Data Task
+            let dataTask = session.dataTask(with: request) { (data, response, error) in
+                if error == nil {
+                    print(response)
+                }
+            }
+            // Start the data task
+            dataTask.resume()
+        }
+        
+    
     }
 }
