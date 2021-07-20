@@ -12,6 +12,8 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
    
     var locationManager = CLLocationManager()
     
+    @Published var authorizationState = CLAuthorizationStatus.notDetermined
+    
     @Published var restaurants = [Business]()
     @Published var sights = [Business]()
     
@@ -30,6 +32,9 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
         // MARK: Location manager Delegate Methods
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        
+        // Update the authorizationState properties
+        authorizationState = locationManager.authorizationStatus
         
         if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
             // We have permission
@@ -87,13 +92,25 @@ class ContentModel: NSObject, ObservableObject, CLLocationManagerDelegate {
                         // Parse Json
                         let decoder = JSONDecoder()
                         let result = try decoder.decode(BusinessSearch.self, from: data!)
+                        
+                        // Sort businesses
+                        var businesses = result.businesses
+                        businesses.sort { b1, b2 in
+                            return b1.distance ?? 0 < b2.distance ?? 0
+                        }
+                        
+                        // Call the get image function of the business
+                        for b in businesses {
+                            b.getImageData()
+                        }
+                        
                         DispatchQueue.main.async {
                             // Assign the result to the appropriate property
                             if category == Constants.sightsKey {
-                                self.sights = result.businesses
+                                self.sights = businesses
                             }
                             else if category == Constants.restaurantsKey {
-                                self.restaurants = result.businesses
+                                self.restaurants = businesses
                             }
                         }
                       
