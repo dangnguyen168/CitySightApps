@@ -14,24 +14,29 @@ struct HomeView: View {
     
     var body: some View {
         if model.restaurants.count != 0 || model.sights.count != 0 {
-            // Determine if we should show list or map
-            if !isMapShowing {
-                // show list
-                VStack (alignment: .leading){
-                    HStack {
-                        Image(systemName: "location")
-                        Text("Your city")
-                        Spacer()
-                        Button("Show the map view") {
-                            isMapShowing = true
+           
+            NavigationView {
+                // Determine if we should show list or map
+                if !isMapShowing {
+                    // show list
+                    VStack (alignment: .leading){
+                        HStack {
+                            Image(systemName: "location")
+                            Text("Your city")
+                            Spacer()
+                            Button("Show the map view") {
+                                isMapShowing = true
+                            }
                         }
+                        Divider()
+                        BusinessList()
                     }
-                    Divider()
-                    BusinessList()
-                }.padding([.horizontal, .top])
-            }
-            else {
-                // show map
+                    .padding([.horizontal, .top])
+                    .navigationBarHidden(true)
+                }
+                else {
+                    // show map
+                }
             }
         }
         else {
