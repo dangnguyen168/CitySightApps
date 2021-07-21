@@ -25,7 +25,7 @@ struct HomeView: View {
                             Text("Your city")
                             Spacer()
                             Button("Show the map view") {
-                                isMapShowing = true
+                                self.isMapShowing = true
                             }
                         }
                         Divider()
@@ -36,6 +36,8 @@ struct HomeView: View {
                 }
                 else {
                     // show map
+                    BusinessMap()
+                        .ignoresSafeArea()
                 }
             }
         }

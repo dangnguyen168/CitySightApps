@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E494D0E26A7D0EB00CF3495 /* BusinessMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E494D0D26A7D0EB00CF3495 /* BusinessMap.swift */; };
 		8ECA205A26A68028002277F3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA205926A68028002277F3 /* HomeView.swift */; };
 		8ECA205D26A6A668002277F3 /* BusinessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA205C26A6A668002277F3 /* BusinessList.swift */; };
 		8ECA205F26A6B2D0002277F3 /* BusinessSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA205E26A6B2D0002277F3 /* BusinessSectionHeader.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E494D0D26A7D0EB00CF3495 /* BusinessMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessMap.swift; sourceTree = "<group>"; };
 		8ECA205926A68028002277F3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8ECA205C26A6A668002277F3 /* BusinessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessList.swift; sourceTree = "<group>"; };
 		8ECA205E26A6B2D0002277F3 /* BusinessSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSectionHeader.swift; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E494D0C26A7CFAE00CF3495 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				8E494D0D26A7D0EB00CF3495 /* BusinessMap.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		8ECA205626A67F3E002277F3 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				8ECA205926A68028002277F3 /* HomeView.swift */,
+				8E494D0C26A7CFAE00CF3495 /* Map */,
 				8ECA205B26A6A64C002277F3 /* List */,
 			);
 			path = Home;
@@ -249,6 +260,7 @@
 				8ECA206626A6DC35002277F3 /* BusinessDetail.swift in Sources */,
 				8ECEEAD026A5AAF90048EB4E /* BusinessSearch.swift in Sources */,
 				8ECA205D26A6A668002277F3 /* BusinessList.swift in Sources */,
+				8E494D0E26A7D0EB00CF3495 /* BusinessMap.swift in Sources */,
 				8ECA206126A6B375002277F3 /* BusinessSection.swift in Sources */,
 				8ECEEACC26A531390048EB4E /* ContentModel.swift in Sources */,
 				8ECEEAD326A5AEA80048EB4E /* Constants.swift in Sources */,
