@@ -13,7 +13,7 @@ struct BusinessTitle: View {
         VStack (alignment: .leading) {
             Text (business.name!)
                 .bold()
-                .font(.largeTitle)
+                .font(.title2)
                 
             
             // Loop through display address

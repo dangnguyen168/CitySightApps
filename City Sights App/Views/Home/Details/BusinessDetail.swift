@@ -40,43 +40,52 @@ struct BusinessDetail: View {
             
             
             Group {
+                HStack {
                     BusinessTitle(business: business)
                         .padding()
-                    
-                    Divider()
-                    // Phone, Review, Website
-                    HStack {
-                        Text("Phone: ")
-                            .bold()
-                        Text(business.phone ?? "")
-                        Spacer()
-                        Link("Call", destination: URL(string: "tel:\(business.phone ?? "")")!)
-                        Divider()
-                    }
-                    .padding()
-                    HStack {
-                        Text("Reviews: ")
-                            .bold()
-                        Text(String(business.reviewCount ?? 0))
-                        Spacer()
-                        Link("Read", destination: URL(string: "\(business.url ?? "")")!)
-                        Divider()
-                    }
-                    .padding()
-                    HStack {
-                        Text("Website: ")
-                            .bold()
-                        Text(business.url ?? "")
-                            .lineLimit(1)
-                        Spacer()
-                        Link("Visit", destination: URL(string: "\(business.url ?? "")")!)
-                        Divider()
-                    }
-                    .padding()
+                    Spacer()
+                    YelpAttribution(link: business.url!)
                 }
+                
+                
+                DashedDivider()
+                    .padding(.horizontal)
+                // Phone, Review, Website
+                HStack {
+                    Text("Phone: ")
+                        .bold()
+                    Text(business.phone ?? "")
+                    Spacer()
+                    Link("Call", destination: URL(string: "tel:\(business.phone ?? "")")!)
+                    DashedDivider()
+                        .padding(.horizontal)
+                }
+                .padding()
+                HStack {
+                    Text("Reviews: ")
+                        .bold()
+                    Text(String(business.reviewCount ?? 0))
+                    Spacer()
+                    Link("Read", destination: URL(string: "\(business.url ?? "")")!)
+                    DashedDivider()
+                        .padding(.horizontal)
+                }
+                .padding()
+                HStack {
+                    Text("Website: ")
+                        .bold()
+                    Text(business.url ?? "")
+                        .lineLimit(1)
+                    Spacer()
+                    Link("Visit", destination: URL(string: "\(business.url ?? "")")!)
+                    DashedDivider()
+                        .padding(.horizontal)
+                }
+                .padding()
+            }
             // Get Direction Button
             Button {
-               showDirections = true
+                showDirections = true
             } label: {
                 ZStack {
                     Rectangle()
